@@ -1,0 +1,434 @@
+// populate-events.js
+// Fetch published events from the API and render them into the blog page.
+document.addEventListener('DOMContentLoaded', function() {
+  const API_BASE = window.__APP?.BASE_URL || 'http://localhost:5000/api';
+  const ENDPOINT = API_BASE.replace(/\/+$/, '') + '/events';
+
+  function formatDate(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch (e) { return '' }
+  }
+
+  function stripHtml(html) {
+    if (!html) return '';
+    return String(html).replace(/<[^>]*>/g, '');
+  }
+
+  function truncate(text, n = 180) {
+    if (!text) return '';
+    return text.length > n ? text.slice(0, n).trim() + '...' : text;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>"']/g, c => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c]));
+  }
+
+  function makeCard(ev) {
+    const card = document.createElement('div');
+    card.className = 'blog-card';
+
+    // Image section
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'blog-img';
+    const img = document.createElement('img');
+    img.alt = ev.title || 'Event image';
+    img.src = ev.image_url || 'images/blog.png';
+    imgWrap.appendChild(img);
+    card.appendChild(imgWrap);
+
+    // Details section
+    const details = document.createElement('div');
+    details.className = 'blog-details';
+
+    const titleLink = document.createElement('a');
+    titleLink.href = `view-event.html?id=${encodeURIComponent(ev.id || ev._id)}`;
+    const title = document.createElement('h1');
+    title.textContent = ev.title || 'Untitled';
+    titleLink.appendChild(title);
+
+    const date = document.createElement('p');
+    date.className = 'date';
+    date.textContent = formatDate(ev.created_at || ev.createdAt);
+
+    const body = document.createElement('p');
+    body.className = 'body';
+    body.textContent = truncate(stripHtml(ev.description));
+
+    details.appendChild(titleLink);
+    details.appendChild(date);
+    details.appendChild(body);
+
+    // Add tags if present
+    if (ev.tags && ev.tags.length) {
+      const tagsDiv = document.createElement('div');
+      tagsDiv.className = 'event-tags';
+      tagsDiv.innerHTML = ev.tags.map(tag => 
+        `<a href="current-events.html?tag=${encodeURIComponent(tag)}" class="tag">${escapeHtml(tag)}</a>`
+      ).join('');
+      details.appendChild(tagsDiv);
+    }
+
+    card.appendChild(details);
+    return card;
+  }
+
+  async function loadEvents() {
+    console.log('Loading events...'); // Debug
+    const container = document.querySelector('.blog-wrapper .blog-item');
+    if (!container) {
+      console.error('Could not find container element .blog-wrapper .blog-item');
+      return;
+    }
+
+    // Show loading state
+    container.innerHTML = '<div style="text-align: center; padding: 2rem;">Loading events...</div>';
+
+    try {
+      console.log('Fetching from:', ENDPOINT); // Debug
+      const response = await fetch(ENDPOINT);
+      if (!response.ok) throw new Error('Failed to fetch events');
+      
+      const events = await response.json();
+      console.log('Fetched events:', events); // Debug
+
+      // Get tag filter from URL
+      const params = new URLSearchParams(window.location.search);
+      const tagFilter = params.get('tag');
+      console.log('Tag filter:', tagFilter); // Debug
+
+      // Filter events:
+      // 1. Only published events
+      // 2. If tag filter is active, only events with that tag
+      const filteredEvents = events.filter(event => {
+        const isPublished = !event.status || event.status.toLowerCase() === 'published';
+        const matchesTag = !tagFilter || (event.tags && event.tags.includes(tagFilter));
+        return isPublished && matchesTag;
+      });
+
+      console.log('Filtered events:', filteredEvents); // Debug
+
+      // Update page title if filtering by tag
+      if (tagFilter) {
+        const titleElement = document.querySelector('#pg-content h1');
+        if (titleElement) {
+          titleElement.textContent = `Events tagged with "${tagFilter}"`;
+        }
+      }
+
+      // Clear the container
+      container.innerHTML = '';
+
+      if (filteredEvents.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 2rem;">
+            <p>No events found${tagFilter ? ` with tag "${escapeHtml(tagFilter)}"` : ''}.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Add each event card
+      filteredEvents.forEach(event => {
+        const card = makeCard(event);
+        container.appendChild(card);
+      });
+
+    } catch (err) {
+      console.error('Error loading events:', err);
+      container.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: #dc3545;">
+          Error loading events. Please try again later.
+        </div>
+      `;
+    }
+  }
+
+  // Start loading events
+  loadEvents();
+});
+  const API_BASE = window.__APP?.BASE_URL || 'http://localhost:5000/api';
+  const ENDPOINT = API_BASE.replace(/\/+$/, '') + '/events';
+
+  // Get tag filter from URL query parameter
+  function getTagFilter() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('tag');
+  }
+
+  // Format date helper
+  function formatDate(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch (e) { return '' }
+  }
+
+  function stripHtml(html) {
+    if (!html) return '';
+    return String(html).replace(/<[^>]*>/g, '');
+  }
+
+  function truncate(text, n = 180) {
+    if (!text) return '';
+    return text.length > n ? text.slice(0, n).trim() + '...' : text;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>"']/g, c => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c]));
+  }
+
+  // Generate the HTML for a single event card
+  function makeCard(ev) {
+    const card = document.createElement('div');
+    card.className = 'blog-card';
+
+    // Image section
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'blog-img';
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = ev.title || 'Event image';
+    img.src = ev.image_url || 'images/blog.png';
+    imgWrap.appendChild(img);
+    card.appendChild(imgWrap);
+
+    // Details section
+    const details = document.createElement('div');
+.blog-details');
+
+    const titleLink = document.createElement('a');
+    titleLink.href = `view-event.html?id=${encodeURIComponent(ev.id || ev._id)}`;
+    const title = document.createElement('h1');
+    title.textContent = ev.title || 'Untitled';
+    titleLink.appendChild(title);
+
+    const date = document.createElement('p');
+    date.className = 'date';
+    date.textContent = formatDate(ev.created_at || ev.createdAt);
+
+    const body = document.createElement('p');
+    body.className = 'body';
+    body.textContent = truncate(stripHtml(ev.description));
+
+    details.appendChild(titleLink);
+    details.appendChild(date);
+    details.appendChild(body);
+
+    // Add tags if present
+    if (ev.tags && ev.tags.length) {
+      const tagsDiv = document.createElement('div');
+      tagsDiv.className = 'event-tags';
+      tagsDiv.innerHTML = ev.tags.map(tag => 
+        `<a href="?tag=${encodeURIComponent(tag)}" class="tag">${escapeHtml(tag)}</a>`
+      ).join('');
+      details.appendChild(tagsDiv);
+    }
+
+    card.appendChild(details);
+    return card;
+  }
+
+  // Load and display events, optionally filtered by tag
+  async function loadEvents() {
+    console.log('Loading events...'); // Debug
+    const container = document.querySelector('.blog-wrapper .blog-item');
+    if (!container) {
+      console.error('Could not find container element .blog-wrapper .blog-item');
+      return;
+    }
+
+    try {
+      console.log('Fetching from:', ENDPOINT); // Debug
+      const response = await fetch(ENDPOINT);
+      if (!response.ok) throw new Error('Failed to fetch events');
+      
+      const events = await response.json();
+      console.log('Fetched events:', events); // Debug
+      
+      const tagFilter = getTagFilter();
+      console.log('Tag filter:', tagFilter); // Debug
+
+      // Filter events:
+      // 1. Only published events
+      // 2. If tag filter is active, only events with that tag
+      const filteredEvents = events.filter(event => {
+        const isPublished = !event.status || event.status.toLowerCase() === 'published';
+        const matchesTag = !tagFilter || (event.tags && event.tags.includes(tagFilter));
+        return isPublished && matchesTag;
+      });
+
+      console.log('Filtered events:', filteredEvents); // Debug
+
+      // Update page title if filtering by tag
+      const titleElement = document.querySelector('main h1');
+      if (titleElement && tagFilter) {
+        titleElement.textContent = `Events tagged with "${tagFilter}"`;
+      }
+
+      // Clear the container and all its contents
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+
+      if (filteredEvents.length === 0) {
+        const noEvents = document.createElement('div');
+        noEvents.className = 'no-events';
+        noEvents.innerHTML = `<p>No events found${tagFilter ? ` with tag "${escapeHtml(tagFilter)}"` : ''}.</p>`;
+        container.appendChild(noEvents);
+        return;
+      }
+
+      // Add each event card
+      filteredEvents.forEach(event => {
+        const card = makeCard(event);
+        container.appendChild(card);
+      });
+
+    } catch (err) {
+      console.error('Error loading events:', err);
+      container.innerHTML = '<div class="error">Error loading events. Please try again later.</div>';
+    }
+  }
+
+  // Start loading events
+  loadEvents();
+});
+    img.alt = ev.title || 'event image';
+    imgWrap.appendChild(img);
+
+    const details = document.createElement('div');
+    details.className = 'blog-details';
+    const a = document.createElement('a');
+    a.href = `view-event.html?id=${encodeURIComponent(ev.id)}`;
+    const h1 = document.createElement('h1');
+    h1.textContent = ev.title || 'Untitled';
+    a.appendChild(h1);
+
+    const dateP = document.createElement('p');
+    dateP.id = 'date';
+    dateP.textContent = formatDate(ev.created_at || ev.createdAt || ev.updated_at);
+
+    const bodyP = document.createElement('p');
+    bodyP.id = 'body';
+    bodyP.textContent = truncate(stripHtml(ev.description || ''), 180);
+
+    details.appendChild(a);
+    details.appendChild(dateP);
+    details.appendChild(bodyP);
+
+    card.appendChild(imgWrap);
+    card.appendChild(details);
+    return card;
+  }
+
+  async function loadAndRender() {
+    const wrapper = document.querySelector('.blog-item');
+    if (!wrapper) return;
+
+    // show loading placeholder
+    wrapper.innerHTML = '<p style="padding:24px; text-align:center;">Loading events…</p>';
+
+    try {
+      const res = await fetch(ENDPOINT, { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('Failed to fetch events: ' + res.status);
+      const events = await res.json();
+
+      // backend returns all events; filter published
+      const publishedAll = Array.isArray(events) ? events.filter(e => String((e.status || '').toLowerCase()) === 'published') : [];
+
+      // If no published events at all, show message and stop
+      if (!publishedAll.length) {
+        wrapper.innerHTML = '<p style="padding:24px; text-align:center; color:#666;">No published events found.</p>';
+        return;
+      }
+
+      // Sort by date (newest first)
+      publishedAll.sort((a, b) => {
+        const dateA = new Date(a.created_at || a.createdAt || a.updated_at || 0);
+        const dateB = new Date(b.created_at || b.createdAt || b.updated_at || 0);
+        return dateB - dateA;
+      });
+
+      // Only show 3 latest on the homepage (index). Other pages get full list.
+      const path = window.location.pathname || '';
+      const isIndex = path === '/' || path.endsWith('/index.html') || path.endsWith('index.html');
+      const published = isIndex ? publishedAll.slice(0, 3) : publishedAll;
+
+      // If the page already contains a .blog-card used as a visual template, clone it
+      const existingTemplateCard = document.querySelector('.blog-item .blog-card');
+      wrapper.innerHTML = '';
+
+      if (existingTemplateCard) {
+        // Use template cloning so markup and classes remain identical to your design.
+        published.forEach(ev => {
+          const cloned = existingTemplateCard.cloneNode(true);
+
+          // fill image if present
+          const imgEl = cloned.querySelector('.blog-img img');
+          if (imgEl) {
+            imgEl.loading = 'lazy'; // Enable native lazy loading
+            imgEl.dataset.src = ev.image_url || imgEl.src || 'images/blog.png';
+            imgEl.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E';
+          }
+
+          // fill title and link
+          const link = cloned.querySelector('.blog-details a');
+          const titleEl = cloned.querySelector('.blog-details a h1');
+          if (link) link.href = `view-event.html?id=${encodeURIComponent(ev.id)}`;
+          if (titleEl) titleEl.textContent = ev.title || 'Untitled';
+
+          // fill date and body (find by id inside clone if present, else fallback to first <p> elements)
+          const dateEl = cloned.querySelector('#date') || cloned.querySelector('.blog-details p:nth-of-type(1)');
+          const bodyEl = cloned.querySelector('#body') || cloned.querySelector('.blog-details p:nth-of-type(2)');
+          if (dateEl) dateEl.textContent = formatDate(ev.created_at || ev.createdAt || ev.updated_at);
+          if (bodyEl) bodyEl.textContent = truncate(stripHtml(ev.description || ''), 180);
+
+          // wrap in a blog-item (preserve original nesting) and append
+          const itemWrap = document.createElement('div');
+          itemWrap.className = 'blog-card';
+          itemWrap.appendChild(cloned);
+          wrapper.appendChild(itemWrap);
+        });
+      } else {
+        // fallback: generate block cards from scratch
+        published.forEach(ev => {
+          const card = makeCard(ev);
+          const itemWrap = document.createElement('div');
+          itemWrap.className = 'blog-card';
+          itemWrap.appendChild(card);
+          wrapper.appendChild(itemWrap);
+        });
+      }
+
+      // Observe all images for lazy loading
+      wrapper.querySelectorAll('.blog-img img').forEach(img => {
+        if (img.dataset.src) {
+          imageObserver.observe(img);
+        }
+      });
+
+    } catch (err) {
+      console.error('populate-events error', err);
+      wrapper.innerHTML = '<p style="padding:24px; text-align:center; color:red;">Failed to load events.</p>';
+    }
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') loadAndRender();
+  else document.addEventListener('DOMContentLoaded', loadAndRender);
+})();

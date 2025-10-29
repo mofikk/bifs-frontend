@@ -1,0 +1,31 @@
+$font-serif: "Merriweather", serif;
+$font-sans: "Lato", sans-serif;
+
+// Font weights map
+$font-weights: (
+  extra-light: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700
+);
+
+// Helper function to get weight
+@function weight($name) {
+  @return map-get($font-weights, $name);
+}
+
+// Serif mixin
+@mixin serif($weight-name: regular, $style: normal) {
+  font-family: $font-serif;
+  font-weight: weight($weight-name);
+  font-style: $style;
+}
+
+// Sans mixin
+@mixin sans($weight-name: regular, $style: normal) {
+  font-family: $font-sans;
+  font-weight: weight($weight-name);
+  font-style: $style;
+}

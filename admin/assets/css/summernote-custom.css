@@ -1,0 +1,34 @@
+/* Summernote customization */
+.note-editor.note-frame {
+    border-color: #E3E3E3;
+    border-radius: 4px;
+}
+
+.note-editor.note-frame .note-editing-area .note-editable {
+    background-color: #fff;
+    color: #2c2c2c;
+    padding: 15px;
+    min-height: 200px;
+}
+
+.note-toolbar {
+    background: #f7f7f7;
+    border-bottom: 1px solid #E3E3E3;
+    padding: 10px !important;
+}
+
+.note-btn {
+    background-color: #fff !important;
+    border: 1px solid #E3E3E3 !important;
+    padding: 5px 10px !important;
+}
+
+.note-btn:hover {
+    background-color: #f7f7f7 !important;
+}
+
+#uploadError {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}

@@ -1,0 +1,7 @@
+.quote {
+    @include service-quote;
+}
+
+.s-dproof {
+    @include service-detailedProof;
+}

@@ -1,0 +1,10 @@
+.vscode
+
+#Ignore the server folder
+server/
+
+#Ignore node modules
+node_modules/
+
+#Ignore log files
+*.log

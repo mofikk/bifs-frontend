@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>BOWS-Admin | User Profile</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+
+    <script src="../assets/js/visi_admin.js"></script>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/extra.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div id="sidebar-placeholder"></div>
+
+        <div class="main-panel">
+
+            <!-- Navbar -->
+            <div id="navbar-placeholder"></div>
+            <!-- End Navbar -->
+
+            <div class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Your Profile</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <!-- Profile name form -->
+                                    <form id="profile-name-form" autocomplete="off">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="profile-name-input">Name</label>
+                                                    <input id="profile-name-input" name="name" type="text"
+                                                        class="form-control" placeholder="Full name" required value="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="profile-email-input">Email</label>
+                                                    <input id="profile-email-input" name="email" type="email"
+                                                        class="form-control" placeholder="Email Address" disabled
+                                                        value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button id="profile-name-submit" type="submit"
+                                            class="btn btn-info btn-fill pull-right">Change Name
+                                            <span class="btn-text"></span></button>
+                                        <div class="clearfix"></div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-4">
+                            <div class="card card-user">
+                                <div class="card-image">
+                                    <img src="../assets/img/adb_img.jpg" alt="Background image">
+                                </div>
+                                <div class="card-body">
+                                    <div class="author">
+                                        <div href="#">
+                                            <img id="profile-avatar" class="avatar border-gray"
+                                                src="../assets/img/faces/face-0.jpg" alt="avatar">
+                                            <h5 class="title"><span id="profile-card-name">User Name</span></h5>
+                                        </div>
+                                        <p class="description">
+                                            <span id="profile-card-email">user@example.com</span>
+                                        </p>
+                                    </div>
+                                    <p class="role description text-center">
+                                        Your current role is <br>
+                                        <strong id="profile-card-role">Role</strong>
+                                    </p>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+
+                            <div class="card rp-card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Reset Password</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <!-- Password reset form -->
+                                    <form id="profile-password-form" autocomplete="off">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <label for="new-password">New Password</label>
+                                                    <input id="new-password" name="password" type="password"
+                                                        class="form-control" placeholder="Enter new password" value="">
+                                                    <p class="alread-exist error text-danger" id="password-error"></p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class=" col-md-12">
+
+                                                <div class="form-group">
+                                                    <label for="confirm-password">Confirm Password</label>
+                                                    <input id="confirm-password" name="confirm_password" type="password"
+                                                        class="form-control" placeholder="Confirm new password"
+                                                        value="">
+                                                    <p class="alread-exist error text-danger" id="confirm-error"></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <button id="profile-password-submit" type="submit"
+                                            class="btn btn-info btn-fill pull-right">Change
+                                            Password <span class="btn-text"></span></button>
+                                        <div class="clearfix"></div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                        </div>
+
+                        <!-- Confirm modal: Change Name -->
+                        <div class="modal fade" id="modal-change-name" tabindex="-1" role="dialog"
+                            aria-labelledby="modalChangeNameLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <p>Are you sure you want to change name?</p>
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button id="modal-change-name-cancel" type="button"
+                                            class="btn btn-info btn-link btn-simple"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button id="modal-change-name-confirm" type="button"
+                                            class="btn btn-danger btn-link btn-simple">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Confirm modal: Reset Password -->
+                        <div class="modal fade" id="modal-reset-password" tabindex="-1" role="dialog"
+                            aria-labelledby="modalResetPasswordLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <p>Are you sure you want to reset password?</p>
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button id="modal-reset-password-cancel" type="button"
+                                            class="btn btn-info btn-link btn-simple"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button id="modal-reset-password-confirm" type="button"
+                                            class="btn btn-danger btn-link btn-simple">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <nav>
+                                <p class="copyright text-center">
+                                    ©
+                                    <script>document.write(new Date().getFullYear())</script> BOWS
+                                </p>
+                            </nav>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+            <!-- Success Alerts -->
+            <div id="success" data-notify="container" class="col-11 col-sm-4 alert alert-success alert-with-icon"
+                role="alert" data-notify-position="top-center" style="display:none;">
+                <button type="button" aria-hidden="true" class="close" data-notify="dismiss">
+                    <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span><i class="bi bi-check"></i></span>
+                <span data-notify="message"></span>
+            </div>
+
+            <!-- Failed Alerts -->
+            <div id="failed" data-notify="container" class="col-11 col-sm-4 alert alert-danger alert-with-icon"
+                role="alert" data-notify-position="top-center" style="display:none;">
+                <button type="button" aria-hidden="true" class="close" data-notify="dismiss">
+                    <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span><i class="bi bi-x"></i></span>
+                <span data-notify="message"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/plugins/bootstrap-switch.js"></script>
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+    <script src="../assets/js/demo.js"></script>
+    <script src="../assets/js/adminTemplate.js"></script>
+    <script src="../assets/js/confirmModal.js"></script>
+    <script src="../assets/js/pages/user-profile.js"></script>
+
+    <!-- <script>
+            // profile behavior script
+            (function () {
+                const API_BASE = window.__APP?.BASE_URL || "https://bifs-backend.onrender.com/api";
+                const token = window.__APP?.token || localStorage.getItem('token') || null;
+                const storedUser = (window.__APP?.userData) ? window.__APP.userData : (() => {
+                    try { return JSON.parse(localStorage.getItem('user')); } catch (e) { return null; }
+                })();
+
+                // elements
+                const nameInput = document.getElementById('profile-name-input');
+                const emailInput = document.getElementById('profile-email-input');
+                const nameForm = document.getElementById('profile-name-form');
+                const nameSubmit = document.getElementById('profile-name-submit');
+
+                const newPasswordInput = document.getElementById('new-password');
+                const confirmPasswordInput = document.getElementById('confirm-password');
+                const passwordForm = document.getElementById('profile-password-form');
+                const passwordSubmit = document.getElementById('profile-password-submit');
+
+                const modalChangeName = $('#modal-change-name');
+                const modalResetPassword = $('#modal-reset-password');
+                const modalChangeNameConfirm = document.getElementById('modal-change-name-confirm');
+                const modalResetPasswordConfirm = document.getElementById('modal-reset-password-confirm');
+
+                const successAlert = document.getElementById('success');
+                const failedAlert = document.getElementById('failed');
+
+
+
+
+
+                // Toggle password visibility
+                document.querySelectorAll(".toggle-eye").forEach(toggle => {
+                    toggle.addEventListener("click", () => {
+                        const input = toggle.closest(".form-group").querySelector("input");
+                        const icon = toggle.querySelector("i");
+                        if (input.type === "password") {
+                            input.type = "text";
+                            icon.classList.replace("bi-eye", "bi-eye-slash");
+                        } else {
+                            input.type = "password";
+                            icon.classList.replace("bi-eye-slash", "bi-eye");
+                        }
+                    });
+                });
+
+
+
+                /* Replace the previous showBtnLoading / hideBtnLoading implementations with this
+                   which uses the existing <span> inside the button as a spinner placeholder. */
+                function showBtnLoading(btn, text) {
+                    if (!btn) return;
+                    if (btn.dataset.loading === "1") return;
+                    btn.dataset.loading = "1";
+                    btn.disabled = true;
+
+                    // Use the existing <span> inside the button (or create one)
+                    let ph = btn.querySelector('span');
+                    if (!ph) {
+                        ph = document.createElement('span');
+                        btn.appendChild(ph);
+                    }
+
+                    // preserve original content inside the placeholder span
+                    ph.dataset.orig = ph.innerHTML || '';
+                    // inject spinner (your .button-spinner CSS) and optional text
+                    ph.innerHTML = `<span class="button-spinner" aria-hidden="true"></span>${text ? ' ' + text : ''}`;
+                }
+
+
+
+                function hideBtnLoading(btn) {
+                    if (!btn) return;
+                    btn.disabled = false;
+                    btn.dataset.loading = "0";
+
+                    const ph = btn.querySelector('span');
+                    if (ph) {
+                        ph.innerHTML = ph.dataset.orig || '';
+                        delete ph.dataset.orig;
+                    }
+                }
+
+                function showAlert(type, message) {
+                    const el = (type === 'success') ? successAlert : failedAlert;
+                    if (!el) return;
+                    const msgSpan = el.querySelector('[data-notify="message"]');
+                    msgSpan.textContent = message || '';
+                    el.style.display = 'inline-flex';
+                    el.style.opacity = '1';
+                    setTimeout(() => {
+                        el.style.opacity = '0';
+                        setTimeout(() => { el.style.display = 'none'; }, 300);
+                    }, 3500);
+                }
+
+                function displayRole(role) {
+                    if (!role) return '—';
+                    // map legacy values to new labels
+                    if (role === 'admin') return 'Administrator';
+                    if (role === 'user') return 'Observer';
+                    // handle already-migrated values
+                    if (role === 'Administrator' || role === 'Observer') return role;
+                    return String(role);
+                }
+
+                // fill profile inputs from storedUser or fetch if missing
+                async function populateProfile() {
+                    const cardNameEl = document.getElementById('profile-card-name');
+                    const cardEmailEl = document.getElementById('profile-card-email');
+                    const cardRoleEl = document.getElementById('profile-card-role');
+                    const avatarEl = document.getElementById('profile-avatar');
+
+                    // Prefer live server data so role changes in DB show immediately
+                    try {
+                        if (token) {
+                            const res = await fetch(`${API_BASE}/auth/validate`, {
+                                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+                            });
+                            if (res.ok) {
+                                const data = await res.json();
+                                const u = data.user || data;
+
+                                nameInput.value = u.name || '';
+                                emailInput.value = u.email || '';
+
+                                if (cardNameEl) cardNameEl.textContent = u.name || '—';
+                                if (cardEmailEl) cardEmailEl.textContent = u.email || '—';
+                                if (cardRoleEl) cardRoleEl.textContent = displayRole(u.role);
+                                if (avatarEl && u.avatar_url) avatarEl.src = u.avatar_url;
+
+                                // refresh local cache so other pages use updated role
+                                try { localStorage.setItem('user', JSON.stringify(u)); window.__APP = window.__APP || {}; window.__APP.userData = u; } catch (e) { }
+                                return;
+                            } else {
+                                console.warn('auth/validate returned', res.status);
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('populateProfile live fetch failed', e);
+                    }
+
+                    // Fallback to storedUser (if server call failed or no token)
+                    if (storedUser) {
+                        nameInput.value = storedUser.name || '';
+                        emailInput.value = storedUser.email || '';
+                        if (cardNameEl) cardNameEl.textContent = storedUser.name || '—';
+                        if (cardEmailEl) cardEmailEl.textContent = storedUser.email || '—';
+                        if (cardRoleEl) cardRoleEl.textContent = displayRole(storedUser.role);
+                        if (avatarEl && storedUser.avatar_url) avatarEl.src = storedUser.avatar_url;
+                    }
+                }
+
+                // validate password meets policy
+                function passwordValid(pw) {
+                    const re = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+                    return re.test(pw);
+                }
+
+                // get current user id
+                function getUserId() {
+                    if (storedUser && storedUser.id) return storedUser.id;
+                    // try token payload decode (not secure but useful)
+                    try {
+                        if (!token) return null;
+                        const payload = JSON.parse(atob(token.split('.')[1]));
+                        return payload.id || payload.sub || null;
+                    } catch (e) { return null; }
+                }
+
+                // name update flow
+                nameForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // only prompt modal if changed
+                    const currentName = (storedUser && storedUser.name) ? storedUser.name : '';
+                    if (nameInput.value.trim() === currentName.trim()) {
+                        showAlert('failed', 'No change detected.');
+                        return;
+                    }
+                    modalChangeName.modal('show');
+                });
+
+                modalChangeNameConfirm.addEventListener('click', async () => {
+                    modalChangeName.modal('hide');
+                    const userId = getUserId();
+                    if (!userId) {
+                        showAlert('failed', 'User not identified. Please sign in again.');
+                        return;
+                    }
+                    const newName = nameInput.value.trim();
+                    if (!newName) {
+                        showAlert('failed', 'Name cannot be empty.');
+                        return;
+                    }
+                    showBtnLoading(nameSubmit, '');
+                    try {
+                        const res = await fetch(`${API_BASE}/users/${userId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+                            },
+                            body: JSON.stringify({ name: newName })
+                        });
+                        const json = await res.json();
+                        if (!res.ok) {
+                            throw new Error(json.error || json.message || 'Failed to update name');
+                        }
+                        // update local storage user object if present
+                        try {
+                            const raw = localStorage.getItem('user');
+                            if (raw) {
+                                const u = JSON.parse(raw);
+                                u.name = newName;
+                                localStorage.setItem('user', JSON.stringify(u));
+                                window.__APP = window.__APP || {};
+                                window.__APP.userData = u;
+                            }
+                        } catch (e) { /* ignore */ }
+                        showAlert('success', 'Name updated successfully');
+                        // refresh page so user sees updated name everywhere
+                        setTimeout(() => location.reload(), 900);
+                    } catch (err) {
+                        console.error('update name error', err);
+                        showAlert('failed', err.message || 'Failed to update name');
+                    } finally {
+                        hideBtnLoading(nameSubmit);
+                    }
+                });
+
+                // password update flow
+                passwordForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const p1 = newPasswordInput.value || '';
+                    const p2 = confirmPasswordInput.value || '';
+                    document.getElementById('password-error').textContent = '';
+                    document.getElementById('confirm-error').textContent = '';
+
+                    if (!p1 || !p2) {
+                        document.getElementById('password-error').textContent = 'Password fields required.';
+                        return;
+                    }
+                    if (p1 !== p2) {
+                        document.getElementById('confirm-error').textContent = 'Passwords do not match.';
+                        return;
+                    }
+                    if (!passwordValid(p1)) {
+                        document.getElementById('password-error').textContent = 'Password must be 8+ chars, include uppercase, number and symbol.';
+                        return;
+                    }
+                    modalResetPassword.modal('show');
+                });
+
+                modalResetPasswordConfirm.addEventListener('click', async () => {
+                    modalResetPassword.modal('hide');
+                    const userId = getUserId();
+                    if (!userId) {
+                        showAlert('failed', 'User not identified. Please sign in again.');
+                        return;
+                    }
+                    const newPw = newPasswordInput.value;
+                    showBtnLoading(passwordSubmit, '');
+                    try {
+                        const res = await fetch(`${API_BASE}/users/${userId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+                            },
+                            body: JSON.stringify({ password: newPw })
+                        });
+                        const json = await res.json();
+                        if (!res.ok) {
+                            throw new Error(json.error || json.message || 'Failed to reset password');
+                        }
+                        showAlert('success', 'Password changed. You will be logged out.');
+                        // clear auth and redirect after small delay
+                        setTimeout(() => {
+                            localStorage.removeItem('token');
+                            localStorage.removeItem('user');
+                            window.location.href = '../sign-in.html';
+                        }, 1200);
+                    } catch (err) {
+                        console.error('reset password error', err);
+                        showAlert('failed', err.message || 'Failed to reset password');
+                    } finally {
+                        hideBtnLoading(passwordSubmit);
+                    }
+                });
+
+                // init
+                populateProfile();
+            })();
+    </script> -->
+
+</body>
+
+</html>

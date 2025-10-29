@@ -1,0 +1,30 @@
+.sub-form #error,
+.sub-form #success {
+    display: none;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.sub-form button {
+    position: relative;
+}
+
+.sub-form button .fa-spinner {
+    margin-right: 5px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fa-spin {
+    animation: spin 1s infinite linear;
+}

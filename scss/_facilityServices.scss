@@ -1,0 +1,58 @@
+main {
+    background-color: $white-color;
+
+    & .wcbo,
+    .partner {
+        @include section;
+    }
+}
+
+.service-header {
+    @include page-header;
+}
+
+.s-content-section {
+    @include service-opening-content;
+}
+
+.s-statement {
+    @include service-statement;
+}
+
+.s-pproof {
+    @include service-proof;
+}
+
+.offer {
+    @include service-offer;
+}
+
+.sub-services {
+    @include sub-services;
+}
+
+.partner {
+    @include flex-center(column);
+    gap: 15px;
+    margin-bottom: 50px;
+
+    @include other-pages-section-title;
+
+    & p {
+        margin-bottom: 10px;
+    }
+
+    a {
+        @include button-style;
+        @include secondary-btn;
+        color: $primary-color;
+        border: 2.5px solid $primary-color;
+        // font-size: 1rem;
+
+        &:hover {
+            background-color: $primary-color;
+            color: $white-color;
+            border: 2.5px solid transparent;
+        }
+    }
+}

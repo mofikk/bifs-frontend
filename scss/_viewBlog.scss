@@ -1,0 +1,224 @@
+main {
+    background-color: $white-color;
+}
+
+.view-blog-header {
+    background-image: url(../images/about/About-header.jpg);
+    @include page-header;
+}
+
+.view-blog-page-container {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 80px 10%;
+    align-items: start;
+}
+
+.blog-content {
+    @include flex-center(column);
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    padding-right: 50px;
+    gap: 30px;
+
+    & .b-img {
+        max-width: 550px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    & .content {
+        color: $black-color;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        @include sans(medium);
+    }
+}
+
+.side-content {
+    @include flex-center(column);
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 30px;
+
+    .search,
+    .category,
+    .recent,
+    .b-newsletter {
+        @include flex-center(column);
+        background-color: darken($color: $white-color, $amount: 5);
+        padding: 15px;
+        width: 100%;
+
+        h2 {
+            text-align: left;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+    }
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+
+    .s-field {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    .input {
+        font-size: 1rem;
+        padding: 16px 5px;
+        width: 100%;
+        padding-left: 45px;
+        outline: none;
+        background: $white-color;
+        color: $black-color;
+        border: 1px solid $primary-color;
+        border-radius: 0px;
+        box-shadow: 0px 0px 5px -2px #919191;
+        transition: 0.3s ease;
+    }
+
+    .input:focus {
+        background: #f2f2f2;
+        border: 1px solid $primary-alt;
+        border-radius: 10px;
+    }
+
+    .input::placeholder {
+        color: #ababab;
+    }
+
+    i {
+        position: absolute;
+        left: 20px;
+        fill: $primary-color;
+        font-size: 1rem;
+    }
+
+    .form-group {
+        width: 100%;
+        button {
+            @include button-style;
+            @include secondary-btn;
+            width: 100%;
+            border: 2px solid $primary-color;
+            color: $primary-color;
+            font-size: 1rem;
+
+            &:hover {
+                border: 2px solid transparent;
+                background-color: $primary-color;
+                color: $white-color;
+            }
+        }
+    }
+}
+
+.category {
+    ul {
+        @include flex-center(column);
+        // align-items: flex-start;
+        width: 100%;
+    }
+
+    a {
+        padding: 20px 10px;
+        border-bottom: 1px solid $primary-alt;
+        color: $primary-color;
+        text-align: left;
+        width: 100%;
+        transition: color 0.4s ease;
+
+        &:last-child {
+            border-bottom: 0px solid $primary-alt;
+        }
+
+        &:hover {
+            color: $accent-color;
+        }
+
+        li {
+            color: $primary-color;
+            text-decoration: none;
+            @include sans(bold);
+
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}
+
+.recent {
+    .r-item {
+        @include flex-center(column);
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-self: flex-start;
+        gap: 30px;
+
+        .items {
+            @include flex-center(row);
+            justify-content: flex-start;
+            gap: 10px;
+            align-self: flex-start;
+
+            .r-img {
+                max-width: 80px;
+                max-height: 80px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+            }
+
+            .r-info {
+                @include flex-center(column);
+                align-items: flex-start;
+                gap: 5px;
+
+                h3 {
+                    a {
+                        color: $primary-color;
+                        font-size: 1.1rem;
+                        @include serif(bold);
+                        transition: color 0.4s ease;
+
+                        &:hover {
+                            color: $accent-color;
+                        }
+
+                        @include respond-to(md) {
+                            font-size: 1rem;
+                        }
+
+                        @include respond-to(sm) {
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+
+                p {
+                    font-size: 0.7rem;
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}

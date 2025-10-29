@@ -1,0 +1,45 @@
+/* Extended Brand Colors */
+$primary-color: #0d336e; // Deep Blue (Primary)
+$primary-alt: #2e5089; // Secondary Blue (New)
+$secondary-color: #e8c538; // Golden Yellow (Secondary / Accent)
+$accent-color: #ba1946; // Strong Red (Accent)
+
+/* Neutral Colors */
+$black-color: #000000;
+$white-color: #ffffff;
+$background-color: $primary-color;
+$text-color: $primary-color;
+
+$colors: (
+    primary: $primary-color,
+    primary-alt: $primary-alt,
+    secondary: $secondary-color,
+    accent: $accent-color,
+    black: $black-color,
+    white: $white-color,
+    background: $background-color,
+    text: $text-color,
+    gray-light: #f5f5f5,
+    green: #28a745,
+    red: #dc3545,
+    yellow: #ffc107,
+    blue: #007bff,
+    orange: #fd7e14,
+    purple: #6024d0,
+    teal: #20c997,
+    cyan: #17a2b8
+);
+
+/* Linear Gradients */
+$gradient-primary: linear-gradient(to bottom, transparent, $primary-color);
+
+$gradient-primary-right: linear-gradient(to left, transparent, $primary-color);
+
+$gradient-primary-right: linear-gradient(to left, transparent 0%, $primary-color 70%);
+
+$gradient-primary-left: linear-gradient(to right, transparent, $primary-color);
+
+$gradient-primary-alt: linear-gradient(to bottom, transparent 0%, $primary-color 70%);
+
+/* Contact Form Styles */
+@debug map-get($colors, "red");

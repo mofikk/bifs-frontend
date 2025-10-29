@@ -1,0 +1,101 @@
+main {
+    background-color: $white-color;
+}
+
+.blog-page-header {
+    background-image: url(../images/about/About-header.jpg);
+    @include page-header;
+}
+
+.blog-wrapper {
+    @include section;
+    @include flex-center(column);
+    gap: 30px;
+
+    .bc-title {
+        @include title;
+
+        h1 {
+            color: $primary-color;
+        }
+    }
+
+    .blog-item {
+        @include flex-center(row);
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+
+        .blog-card {
+            @include flex-center(column);
+            max-width: 400px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.19);
+
+            .blog-img {
+                height: 250px;
+                width: auto;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 110%;
+                    object-fit: cover;
+                    transition: transform 0.5s ease;
+                }
+            }
+
+            .blog-details {
+                padding: 20px;
+                @include flex-center(column);
+                align-items: flex-start;
+
+                h1 {
+                    font-size: 1.5rem;
+                    @include serif(bold);
+                    margin-bottom: 20px;
+
+                    &::after {
+                        content: "";
+                        display: block;
+                        margin-top: 0.5em;
+                        width: 30px;
+                        height: 5px;
+                        background-color: $secondary-color;
+                    }
+                }
+
+                #date {
+                    font-size: 0.7rem;
+                    @include sans(regular);
+                }
+
+                #body {
+                    font-size: 1rem;
+                    @include sans(medium);
+                    padding-top: 10px;
+                    line-height: 1.5;
+                }
+
+                a {
+                    color: $primary-color;
+                    text-decoration: none;
+                }
+            }
+
+            &:hover img {
+                transform: scale(1.04);
+            }
+
+            &:hover .blog-details {
+                background-color: $primary-color;
+                color: $white-color;
+                transition: background-color 0.5s ease-in-out;
+            }
+
+            &:hover a {
+                color: $white-color;
+            }
+        }
+    }
+}

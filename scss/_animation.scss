@@ -1,0 +1,133 @@
+.hero_content {
+    opacity: 0;
+    transform: translateY(-150px);
+    transition:
+        opacity 0.9s cubic-bezier(0.77, 0, 0.175, 1),
+        transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: opacity, transform;
+}
+
+.hero_content.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+// PILLAR ITEMS IN HOME PAGE
+
+.pillar-item {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: opacity, transform;
+}
+
+.pillar-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+//for blog cards
+
+.blog-card {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: opacity, transform;
+}
+
+.blog-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tnsv {
+    .tnsv-box {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url("/images/tnsv.png"); /* fallback */
+            background-image: -webkit-image-set(
+                url("/images/tnsv.avif") type("image/avif"),
+                url("/images/tnsv.png") type("image/png")
+            );
+            background-image: image-set(
+                url("/images/tnsv.avif") type("image/avif"),
+                url("/images/tnsv.png") type("image/png")
+            );
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform;
+            transform: scale(1);
+        }
+
+        &.scale-bg::before {
+            transform: scale(1.08); // Adjust scale as desired
+        }
+
+        .tnsv-details {
+            position: relative;
+            z-index: 2;
+        }
+    }
+}
+
+.home-about {
+    .about-box {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url("/images/about/Bifs.jpg");
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform;
+            transform: scale(1);
+        }
+
+        &.scale-bg::before {
+            transform: scale(1.08); // Adjust scale as desired
+        }
+
+        .about-details {
+            position: relative;
+            z-index: 2;
+        }
+    }
+}
+
+//FOR PAGE HEADERS
+
+#pg-content {
+    opacity: 0;
+    transform: translateY(-40px);
+    transition:
+        opacity 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: opacity, transform;
+}
+
+#pg-content.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -1,0 +1,915 @@
+.count-1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.count-box {
+    background: linear-gradient(145deg, #294b84, #3a5ca0);
+    color: #fff;
+    border-radius: 16px;
+    padding: 25px 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.count-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.c-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.c-link:hover {
+    text-decoration: none;
+    color: #efefef;
+}
+
+
+.c2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    height: 50px;
+}
+
+.c-link h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.c-link h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.btn-plus {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.25s ease;
+}
+
+.btn-plus:hover {
+    background-color: #fff;
+    color: #294b84;
+    transform: rotate(90deg);
+}
+
+.btn-plus i {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn.btn-info.btn-fill {
+    cursor: pointer;
+    background-color: #2e5089;
+    border: none;
+}
+
+.confirm-modal-header .icon-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.confirm-modal-header .icon-title i {
+    font-size: 20px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn-confirm,
+.btn-cancel {
+    cursor: pointer;
+}
+
+.button-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.btn.btn-info.btn-fill:disabled {
+    background-color: #3966b3;
+    cursor: not-allowed;
+    border: none;
+}
+
+
+
+.spinner {
+    border: 3px solid #bfd6ff;
+
+    border-top: 3px solid #2e5089;
+
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: tdSpin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes tdSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+.btn.btn-info.btn-fill:disabled {
+    background-color: #3966b3;
+    cursor: not-allowed;
+    border: none;
+}
+
+
+.btn.btn-info.btn-fill:hover {
+    background-color: #0d336e;
+    border: none;
+    transform: translateY(-2px);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    will-change: transform;
+}
+
+
+.btn a {
+    color: white;
+}
+
+.c-header {
+    display: flex;
+    gap: 20px;
+
+}
+
+
+
+
+
+
+.modify {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.mwt-100 {
+    max-width: 100px;
+}
+
+.mwt-150 {
+    max-width: 150px;
+}
+
+.mwt-200 {
+    max-width: 200px;
+}
+
+#body {
+    max-width: 400px;
+}
+
+
+
+#image-link {
+    max-width: 200px;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 992px) {
+    .card form [class*="col-"]:first-child {
+        padding-left: 6px;
+    }
+
+}
+
+.form-check-input {
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.form-check .form-check-label {
+
+    padding-left: 20px;
+}
+
+
+.form-check {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.card .card-category,
+.card label {
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+}
+
+
+.card {
+    padding: 20px;
+}
+
+
+table th,
+table td {
+    vertical-align: middle;
+}
+
+.select {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.form-select {
+    width: 100%;
+    height: 150px;
+}
+
+/* //sign in */
+
+
+.sign-in-container {
+    height: 100vh;
+    background-color: #f4f3ef;
+}
+
+.sign-in-row {
+    max-width: 600px;
+    margin: auto;
+
+}
+
+
+
+#signIn {
+    font-size: 34px;
+    font-weight: 500;
+    color: #2e5089;
+}
+
+.sign-in-btn {
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.sign-in-title h3 {
+    font-weight: 400;
+    text-align: left;
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 6px;
+}
+
+.sign-in-title h4 {
+    font-weight: 700;
+    text-align: left;
+    font-size: 24px;
+    margin: 0;
+    color: #2e5089;
+}
+
+.devider {
+    width: 100%;
+    height: 1px;
+    background-color: grey;
+    margin: 20px 0;
+    opacity: 0.3;
+
+}
+
+
+
+.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+    vertical-align: super;
+
+}
+
+
+
+
+/* ALERT */
+
+.alert {
+    display: inline-flex;
+    margin-top: 0 auto;
+    position: fixed;
+    transition: 0.5s ease-in-out;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1031;
+    top: 20px;
+    left: 40%;
+    right: 0px;
+}
+
+
+.alert button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -13px;
+    z-index: 1033;
+}
+
+#failed,
+#success {
+    opacity: 0;
+    top: 30px;
+}
+
+#failed-show,
+#success-show {
+    opacity: 1;
+    top: 20px;
+    background-color: #0ca90c;
+}
+
+
+#failed,
+#success,
+#failed-show,
+#success-show {
+    transition: all 0.4s ease-in-out;
+}
+
+
+
+.modal-dialog {
+    top: 35%;
+}
+
+.modal-show {
+    display: block;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+
+
+.error {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+.sidebar:after,
+body>.navbar-collapse:after {
+    background: #2e5089;
+}
+
+
+.nav-link {
+    color: #3966b3;
+
+}
+
+/* Preview modal styles */
+.preview-modal-dialog {
+    top: -10%;
+}
+
+
+.preview-modal-dialog img {
+    width: 80%;
+}
+
+
+.preview-event h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.preview-event .preview-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.evt-thumb {
+    border-radius: 4px;
+}
+
+.preview-modal .preview-event h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.preview-modal .preview-event .preview-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.preview-modal .evt-thumb {
+    border-radius: 4px;
+}
+
+/* Confirm modal button colors (custom) */
+.confirm-modal .btn-cancel,
+.confirm-modal .btn-cancel.btn {
+    background-color: #24447b;
+    border-color: #24447b;
+    color: #fff;
+}
+
+.confirm-modal .btn-cancel:hover {
+    background-color: #1d3761;
+    border-color: #1d3761;
+}
+
+.confirm-modal .btn-confirm,
+.confirm-modal .btn-confirm.btn {
+    background-color: #a30f0f;
+    border-color: #a30f0f;
+    color: #fff;
+}
+
+.confirm-modal .btn-confirm:hover {
+    background-color: #840b0b;
+    border-color: #840b0b;
+}
+
+/* Icon sizing for confirm modal */
+.confirm-modal #confirmModalIcon {
+    color: #a30f0f;
+    /* default icon color (danger) */
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #0a1d3e;
+}
+
+.navbar .navbar-nav .nav-item .out span {
+    color: white;
+    background-color: #2e5089;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+.navbar .navbar-nav .nav-item .out span:hover {
+    background-color: #0d336e;
+    border: none;
+    transform: translateY(-2px);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    will-change: transform;
+}
+
+
+div#success {
+    background-color: #0ca90c;
+}
+
+div#failed {
+    background-color: #e54141;
+}
+
+.alert .bi {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+
+#errorLoadingDetails {
+    color: white;
+    background-color: #e54141;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    display: none;
+}
+
+
+.modal-footer #confirm {
+
+    background-color: #e54141;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+
+
+}
+
+.modal-footer #confirm:hover {
+
+    background-color: #a30f0f;
+}
+
+.modal-footer #cancel {
+
+    background-color: #24447b;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.modal-footer #cancel:hover {
+
+    background-color: #0a1d3e;
+}
+
+
+
+
+/* //login */
+
+
+
+.forgot-pass {
+    text-align: right;
+    margin-top: 10px;
+
+}
+
+.forgot-pass a,
+#goBack {
+    color: #0d336e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.forgot-pass a:hover {
+    text-decoration: underline;
+}
+
+
+#check-label {
+
+    margin-bottom: 0;
+}
+
+
+.sidebar[data-image]:after,
+.sidebar.has-image:after,
+body>.navbar-collapse[data-image]:after,
+body>.navbar-collapse.has-image:after {
+    opacity: 1;
+}
+
+.card {
+    margin-bottom: 0px;
+}
+
+.rp-card {
+    margin-bottom: 30px;
+}
+
+.author h5.title {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    color: #0a1d3e;
+}
+
+.author p.description {
+    font-size: 14px;
+    color: #3966b3;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+
+.role {
+    font-size: 12px;
+    color: #0a1d3e;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+.role strong {
+    font-size: 20px;
+    color: #2e5089;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+/* Modal styles */
+.perm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.perm-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(0.5px);
+    transition: opacity .18s;
+    opacity: 0;
+}
+
+.perm-modal-panel {
+    position: relative;
+    width: 94%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(6px) scale(.98);
+    transition: all .18s;
+    opacity: 0;
+    pointer-events: auto;
+}
+
+.perm-body {
+    padding: 20px;
+    text-align: center;
+    color: #222;
+}
+
+.perm-body h4 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+}
+
+.perm-body p {
+    margin: 0 0 14px;
+    color: #444;
+    font-size: .95rem;
+}
+
+.perm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.perm-close {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* Visible/hidden state */
+.perm-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.perm-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.perm-visible .perm-modal-backdrop {
+    opacity: 1;
+}
+
+.perm-visible .perm-modal-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+
+
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+
+.modal.show .modal-dialog {
+    -webkit-transform: translate(0, 30%);
+    -o-transform: translate(0, 30%);
+    transform: translate(0, 2%);
+}
+
+
+@media (max-width: 600px) {
+    tbody tr td {
+        vertical-align: middle;
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    tbody tr td {
+        vertical-align: middle;
+        font-size: 12px;
+    }
+}
+
+/* Prevent horizontal scroll when mobile nav is open */
+html.nav-open {
+    overflow-x: hidden;
+}
+
+/* Ensure the mobile close-layer covers the content when nav is open */
+.close-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.close-layer.visible {
+    opacity: 1;
+}
+
+
+
+
+
+.sidebar-left .sidebar-wrapper .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+
+.navbar-toggle {
+    display: none;
+    /* padding: .25rem .75rem; */
+    font-size: 1.25rem;
+    line-height: 1;
+    background: 0 0;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+
+    width: 37px;
+    height: 27px;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+    margin-top: 11px;
+}
+
+
+.navbar .navbar-toggle .burger-lines {
+    display: block;
+    position: relative;
+    background-color: #888;
+    width: 24px;
+    height: 3px;
+    border-radius: 1px;
+    margin: 4px auto;
+}
+
+
+.sidebar-left {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    z-index: 1040;
+    right: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+}
+
+/* When the checkbox (anywhere on the page) is checked → show sidebar */
+body:has(#sidebar-toggle:checked) .sidebar-left {
+    left: 0;
+}
+
+
+.close-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    float: right;
+    margin-left: 10px;
+}
+
+
+#sidebar-toggle {
+    position: absolute;
+    top: 15px;
+    /* adjust to match your navbar’s top spacing */
+    right: 20px;
+    /* adjust to align exactly over your toggle button */
+    width: 40px;
+    /* size to match your toggle button */
+    height: 40px;
+    opacity: 0;
+    /* makes it invisible but clickable */
+    cursor: pointer;
+    z-index: 2000;
+    /* make sure it sits above the navbar button */
+    top: 15px;
+    left: 20px;
+}
+
+
+
+@media (max-width: 990px) {
+    .navbar-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar-left {
+        display: block;
+    }
+
+
+
+}
