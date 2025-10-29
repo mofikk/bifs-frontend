@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = emailInput.value.trim();
+        // normalize email to lowercase before sending
+        const email = emailInput.value.trim().toLowerCase();
         if (!email) {
             alert("Please enter a valid email");
             return;

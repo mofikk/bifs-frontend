@@ -1,11 +1,34 @@
 // Initialize app state and UI (no template injection)
 (async function initializeApp() {
+  console.log('Initializing app...');
+  
   // safe parse user JSON
   let token = localStorage.getItem("token");
   let userData = null;
   try {
     const raw = localStorage.getItem("user");
+    console.log('Raw user data from localStorage:', raw);
     userData = raw ? JSON.parse(raw) : null;
+    console.log('Parsed user data:', userData);
+    
+    // Immediately try to update navbar with user name
+    if (userData && userData.name) {
+      console.log('Found user name:', userData.name);
+      const navbarUsers = document.querySelectorAll("#navbarUserName");
+      console.log('Found navbar elements:', navbarUsers.length);
+      
+      navbarUsers.forEach(navbarUser => {
+        const span = navbarUser.querySelector('span.no-icon');
+        if (span) {
+          span.textContent = userData.name;
+          console.log('Updated navbar text to:', userData.name);
+        } else {
+          console.log('No span element found in:', navbarUser.outerHTML);
+        }
+      });
+    } else {
+      console.log('No user name found in data');
+    }
   } catch (e) {
     console.warn("Invalid user data in localStorage:", e);
     localStorage.removeItem("user");
@@ -143,14 +166,34 @@ function forceLogout() {
 function logout() { forceLogout(); }
 
 function resolveUserObject(raw) {
-  if (!raw) return null;
+  console.log('Resolving user object from:', raw);
+  if (!raw) {
+    console.log('No raw data provided');
+    return null;
+  }
   let obj = raw;
   if (typeof raw === 'string') {
-    try { obj = JSON.parse(raw); } catch (e) { obj = null; }
+    try { 
+      obj = JSON.parse(raw);
+      console.log('Parsed string data:', obj);
+    } catch (e) { 
+      console.log('Failed to parse string data:', e);
+      obj = null; 
+    }
   }
-  if (!obj) return null;
-  if (obj.user && typeof obj.user === 'object') return obj.user;
-  if (obj.data && typeof obj.data === 'object') return obj.data;
+  if (!obj) {
+    console.log('No valid object after parsing');
+    return null;
+  }
+  if (obj.user && typeof obj.user === 'object') {
+    console.log('Found user object in .user property:', obj.user);
+    return obj.user;
+  }
+  if (obj.data && typeof obj.data === 'object') {
+    console.log('Found user object in .data property:', obj.data);
+    return obj.data;
+  }
+  console.log('Using raw object as user data:', obj);
   return obj;
 }
 
@@ -236,19 +279,105 @@ async function fetchFullUserAndCache() {
 }
 
 async function updateNavbarUserOnceAsync() {
+  // First try to get user data from memory/localStorage
   const raw = window.__APP?.userData || localStorage.getItem('user');
-  const user = resolveUserObject(raw);
-  let name = getCandidateName(user);
-
-  if (!name) {
-    // try to fetch full user from server and re-evaluate
-    const fetched = await fetchFullUserAndCache();
-    if (fetched) name = getCandidateName(fetched);
+  let user;
+  
+  try {
+    user = typeof raw === 'string' ? JSON.parse(raw) : raw;
+  } catch (e) {
+    console.error('Failed to parse user data:', e);
+    return false;
+  }
+  
+  // If we have a user object with a name, use it immediately
+  if (user && user.name) {
+    const navbarUsers = document.querySelectorAll("#navbarUserName");
+    navbarUsers.forEach(navbarUser => {
+      const span = navbarUser.querySelector('span.no-icon') || navbarUser;
+      span.textContent = user.name;
+    });
+    return true;
   }
 
-  const navbarUser = document.getElementById("navbarUserName");
-  if (navbarUser && name) {
-    navbarUser.textContent = name;
+  // If no valid user data, try to get it from the token
+  if (!user || !user.name) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        // Try to extract user info from the JWT token
+        const tokenParts = token.split('.');
+        if (tokenParts.length === 3) {
+          const payload = JSON.parse(atob(tokenParts[1]));
+          user = {
+            id: payload.id,
+            name: payload.name || 'Admin User', // Fallback name if not in token
+            email: payload.email,
+            role: payload.role
+          };
+          // Save this info for future use
+          localStorage.setItem('user', JSON.stringify(user));
+          window.__APP = window.__APP || {};
+          window.__APP.userData = user;
+          
+          // Update the UI
+          const navbarUsers = document.querySelectorAll("#navbarUserName");
+          navbarUsers.forEach(navbarUser => {
+            const span = navbarUser.querySelector('span.no-icon') || navbarUser;
+            span.textContent = user.name;
+          });
+          return true;
+        }
+      } catch (e) {
+        console.error('Error parsing token:', e);
+      }
+      
+      // Only try to fetch from server if we couldn't get info from token
+      try {
+        const response = await fetch(`${BASE_URL}/auth/validate`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          if (data.user?.name) {
+            name = data.user.name;
+            // Update localStorage
+            localStorage.setItem('user', JSON.stringify(data.user));
+            window.__APP = window.__APP || {};
+            window.__APP.userData = data.user;
+          }
+        } else if (response.status === 401) {
+          // Token expired or invalid
+          forceLogout();
+          return false;
+        }
+      } catch (error) {
+        console.warn('Failed to fetch user data:', error);
+      }
+    }
+  }
+
+  // Update all instances of navbarUserName
+  const navbarUsers = document.querySelectorAll("#navbarUserName");
+  console.log('Found navbar elements in update function:', navbarUsers.length);
+  if (navbarUsers.length > 0 && name) {
+    navbarUsers.forEach(navbarUser => {
+      const span = navbarUser.querySelector('span.no-icon');
+      if (span) {
+        console.log('Updating span with name:', name);
+        span.textContent = name;
+      } else {
+        console.log('No span found in navbar element:', navbarUser.outerHTML);
+        // Try to create the structure if it doesn't exist
+        navbarUser.innerHTML = `
+          <i class="nc-icon nc-single-02"></i>
+          <span class="no-icon">${name}</span>
+        `;
+      }
+    });
     return true;
   }
   return false;

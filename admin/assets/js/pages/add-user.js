@@ -42,8 +42,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         nameError.textContent = "";
         emailError.textContent = "";
 
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
+    const name = nameInput.value.trim();
+    // normalize email to lowercase before sending
+    const email = emailInput.value.trim().toLowerCase();
         const password = passwordInput.value.trim();
         const confirmPassword = confirmInput.value.trim();
 

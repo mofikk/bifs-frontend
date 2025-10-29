@@ -26,10 +26,11 @@
         signInBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Signing In...`;
 
         try {
+            // normalize email to lowercase to avoid case-sensitivity issues
             const res = await fetch(`${BASE_URL}/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: emailInput.value.trim(), password: passwordInput.value.trim() }),
+                body: JSON.stringify({ email: emailInput.value.trim().toLowerCase(), password: passwordInput.value.trim() }),
             });
 
             const contentType = res.headers.get("content-type") || "";

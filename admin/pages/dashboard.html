@@ -67,7 +67,7 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li class="">
                         <a class="nav-link" href="dashboard.html">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
@@ -116,7 +116,8 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a id="navbarUserName" class="nav-link" href="user-profile.html">
-
+                            <i class="nc-icon nc-single-02"></i>
+                            <span class="no-icon">Loading...</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -179,7 +180,8 @@
 
                             <li class="nav-item">
                                 <a id="navbarUserName" class="nav-link" href="user-profile.html">
-
+                                    <i class="nc-icon nc-single-02"></i>
+                                    <span class="no-icon">Loading...</span>
                                 </a>
                             </li>
 
@@ -300,25 +302,31 @@
     <script src="../assets/js/pages/dashboard.js"></script>
     <!-- <script src="../assets/js/sidebarToggle.js"></script> -->
 
-    <script src="../assets/js/plugins/chartist.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-
-    <!-- <script src="../assets/js/light-bootstrap-dashboard.js"></script> -->
-
-    <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assets/js/demo.js"></script>
-    <script src="../assets/js/adminTemplate.js"></script>
-    <script src="../assets/js/roleUi.js"></script>
-    <script src="../assets/js/pages/dashboard.js"></script>
 
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Try to set username immediately
+            try {
+                const userData = localStorage.getItem('user');
+                if (userData) {
+                    const user = JSON.parse(userData);
+                    if (user && user.name) {
+                        const navbarUsers = document.querySelectorAll("#navbarUserName");
+                        navbarUsers.forEach(navbarUser => {
+                            const span = navbarUser.querySelector('span.no-icon');
+                            if (span) {
+                                span.textContent = user.name;
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                console.error('Error setting initial username:', e);
+            }
 
-    <!-- <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("sidebar-toggle").checked = false;
-    });
-</script> -->
-
-
-</h
+            // Set sidebar toggle state
+            document.getElementById("sidebar-toggle").checked = false;
+        });
+    </script>
+</h>
