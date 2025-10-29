@@ -794,26 +794,7 @@ body>.navbar-collapse.has-image:after {
 }
 
 
-@media (max-width: 600px) {
-    tbody tr td {
-        vertical-align: middle;
-        font-size: 14px;
-    }
 
-    .modal.show .preview-modal-dialog {
-        -webkit-transform: translate(0, 4.5%);
-        -o-transform: translate(0, 4.5%);
-        transform: translate(0, 4.5%);
-    }
-}
-
-
-@media (max-width: 576px) {
-    tbody tr td {
-        vertical-align: middle;
-        font-size: 12px;
-    }
-}
 
 /* Prevent horizontal scroll when mobile nav is open */
 html.nav-open {
@@ -931,6 +912,47 @@ html.nav-open {
     height: 3px;
     border-radius: 1px;
     margin: 4px auto;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+    tbody tr td {
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .modal.show .preview-modal-dialog {
+        -webkit-transform: translate(0, 4.5%);
+        -o-transform: translate(0, 4.5%);
+        transform: translate(0, 4.5%);
+    }
+
+    .c-header {
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .btn {
+        font-size: 0.7rem;
+        margin-bottom: 0px;
+
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    tbody tr td {
+        vertical-align: middle;
+        font-size: 12px;
+    }
 }
 
 
