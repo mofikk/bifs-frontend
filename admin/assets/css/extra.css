@@ -445,7 +445,7 @@ body>.navbar-collapse:after {
     margin-right: 5px;
 }
 
-.nav .nav-item #navbarUserName {
+.navbar-nav .nav-item #navbarUserName {
     color: #24447b;
 }
 
@@ -782,6 +782,12 @@ body>.navbar-collapse.has-image:after {
     transform: translate(0, -60%);
 }
 
+.modal.show .preview-modal-dialog {
+    -webkit-transform: translate(0, 5%);
+    -o-transform: translate(0, 5%);
+    transform: translate(0, 5%);
+}
+
 
 .modal-backdrop {
     display: none;
@@ -792,6 +798,12 @@ body>.navbar-collapse.has-image:after {
     tbody tr td {
         vertical-align: middle;
         font-size: 14px;
+    }
+
+    .modal.show .preview-modal-dialog {
+        -webkit-transform: translate(0, 4.5%);
+        -o-transform: translate(0, 4.5%);
+        transform: translate(0, 4.5%);
     }
 }
 
@@ -931,6 +943,10 @@ html.nav-open {
     }
 
     .sidebar {
+        display: none;
+    }
+
+    .navbar-collapse {
         display: none;
     }
 
