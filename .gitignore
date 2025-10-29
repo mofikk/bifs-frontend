@@ -8,3 +8,7 @@ node_modules/
 
 #Ignore log files
 *.log
+
+scripts/
+
+convert-images-to-webp-avif.sh
