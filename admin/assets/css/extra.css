@@ -915,7 +915,13 @@ html.nav-open {
 }
 
 
+@media(max-width: 756px) {
 
+    .up-item {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
 
 
 @media (max-width: 600px) {

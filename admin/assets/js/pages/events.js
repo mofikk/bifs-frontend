@@ -77,8 +77,12 @@ function renderEventsArray(events, tbody) {
         const tagsText = Array.isArray(event.tags) ? event.tags.join(", ") : (event.tags || "");
         // make image clickable to open preview
         const imageCell = event.image_url
-            ? `<img class="evt-thumb" src="${event.image_url}" alt="event image" data-event-id="${event.id}" style="width:60px;height:40px;object-fit:cover;cursor:pointer;">`
+            ? `<img class="" src="${event.image_url}" alt="event image" data-event-id="${event.id}" style="width:60px;height:40px;object-fit:cover;">`
             : "No image";
+
+            //i removed class: evt-thumb from img above and also removed  cursor:pointer; from style to fix layout issue
+
+            
         const date = event.created_at
             ? new Date(event.created_at).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
             : "\u2014";
