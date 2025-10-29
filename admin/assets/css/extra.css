@@ -955,7 +955,28 @@ html.nav-open {
     }
 }
 
+@media (max-width: 768px) {
+    #createEventForm {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
 
+    #createEventForm .form-group {
+        margin-bottom: 1rem;
+    }
+
+    #createEventForm .btn {
+        width: 100%;
+    }
+
+    #tags {
+        height: 150px;
+    }
+
+    #createEventForm textarea {
+        min-height: 120px;
+    }
+}
 
 
 @media (max-width: 991px) {
