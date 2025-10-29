@@ -945,6 +945,26 @@ html.nav-open {
     h4 {
         font-size: 20px;
     }
+
+
+    option {
+        font-size: 16px;
+    }
+
+    .card label {
+        font-size: 12px;
+    }
+
+    .form-control::placeholder {
+
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 20px 5px;
+    }
+
+
 }
 
 
@@ -952,29 +972,6 @@ html.nav-open {
     tbody tr td {
         vertical-align: middle;
         font-size: 12px;
-    }
-}
-
-@media (max-width: 768px) {
-    #createEventForm {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-
-    #createEventForm .form-group {
-        margin-bottom: 1rem;
-    }
-
-    #createEventForm .btn {
-        width: 100%;
-    }
-
-    #tags {
-        height: 150px;
-    }
-
-    #createEventForm textarea {
-        min-height: 120px;
     }
 }
 
