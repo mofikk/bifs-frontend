@@ -4657,7 +4657,7 @@ main .partner {
     box-shadow: 1px 2px 8px rgba(100, 100, 100, 0.1);
   }
   .blog-container .blog-item .blog-card .blog-img {
-    height: 300px;
+    height: 245px;
     width: auto;
     overflow: hidden;
   }

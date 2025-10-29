@@ -81,7 +81,7 @@
     if (!wrapper) return;
 
     // show loading placeholder
-    wrapper.innerHTML = '<p style="padding:24px; text-align:center;">Loading events…</p>';
+    wrapper.innerHTML = '<p style="padding:24px; text-align:center;"></p>';
 
     try {
       const res = await fetch(ENDPOINT, { headers: { Accept: 'application/json' } });
@@ -93,7 +93,7 @@
 
       // If no published events at all, show message and stop
       if (!publishedAll.length) {
-        wrapper.innerHTML = '<p style="padding:24px; text-align:center; color:#666;">No published events found.</p>';
+        wrapper.innerHTML = '<p style="padding:24px; text-align:center; color:#666;"> </p>';
         return;
       }
 
@@ -164,7 +164,7 @@
 
     } catch (err) {
       console.error('populate-events error', err);
-      wrapper.innerHTML = '<p style="padding:24px; text-align:center; color:red;">Failed to load events.</p>';
+      wrapper.innerHTML = '<p style="padding:24px; text-align:center; color:red;"></p>';
     }
   }
 
