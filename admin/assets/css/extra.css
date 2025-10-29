@@ -1,3 +1,100 @@
+/* .count-1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+
+}
+
+.count-box {
+    border-radius: 4px;
+    background-color: #2e5089;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    flex: 1 1 280px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+}
+
+.c1 {
+    width: 100%;
+
+}
+
+.c-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 1
+
+.c-link:hover {
+    text-decoration: none;
+    color: #efefef;
+}00%;
+}
+
+
+.c-link:hover {
+    color: rgb(192, 192, 192);
+}
+
+.c-link h2,
+.c-link h3 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.c-link h2 {
+    font-size: 32px;
+}
+
+.c2 {
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+.c2 a {
+    color: white;
+    align-self: flex-end;
+    align-self: flex-end;
+    border-radius: 50px;
+    border: 1px solid white;
+    display: flex;
+    padding: 5px;
+
+}
+
+.c2 a:hover {
+    color: gray;
+}
+
+
+.c2 a i {
+    font-size: 22px;
+    font-weight: bold;
+} */
+
+
+
+
+
+
+
+
+
 .count-1 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -23,26 +120,22 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+
+.c2 {
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 50px;
+
+}
+
 .c-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
     color: #fff;
-}
-
-.c-link:hover {
-    text-decoration: none;
-    color: #efefef;
-}
-
-
-.c2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
-    height: 50px;
 }
 
 .c-link h2 {
@@ -83,6 +176,11 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+
+
+
+
 
 .btn.btn-info.btn-fill {
     cursor: pointer;
@@ -804,77 +902,26 @@ html.nav-open {
 
 
 
-
-
-.sidebar-left .sidebar-wrapper .logo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-
-
-
-
-
-.navbar-toggle {
-    display: none;
-    /* padding: .25rem .75rem; */
-    font-size: 1.25rem;
-    line-height: 1;
-    background: 0 0;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-
-    width: 37px;
-    height: 27px;
-    vertical-align: middle;
-    outline: 0;
-    cursor: pointer;
-    margin-top: 11px;
-}
-
-
-.navbar .navbar-toggle .burger-lines {
-    display: block;
-    position: relative;
-    background-color: #888;
-    width: 24px;
-    height: 3px;
-    border-radius: 1px;
-    margin: 4px auto;
-}
-
-
 .sidebar-left {
     display: none;
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -250px;
     z-index: 1040;
-    right: auto !important;
-    transform: none !important;
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
 }
 
-/* When the checkbox (anywhere on the page) is checked → show sidebar */
+/* When the checkbox (anywhere on the page) is che.sidebar-left .sidebar-wrapper .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+cked → show sidebar */
 body:has(#sidebar-toggle:checked) .sidebar-left {
     left: 0;
 }
 
 
-.close-btn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    float: right;
-    margin-left: 10px;
-}
+
 
 
 #sidebar-toggle {
@@ -884,7 +931,7 @@ body:has(#sidebar-toggle:checked) .sidebar-left {
     right: 20px;
     /* adjust to align exactly over your toggle button */
     width: 40px;
-    /* size to match your toggle button */
+    /* size to m    margin-top: 11px;atch your toggle button */
     height: 40px;
     opacity: 0;
     /* makes it invisible but clickable */
@@ -892,24 +939,17 @@ body:has(#sidebar-toggle:checked) .sidebar-left {
     z-index: 2000;
     /* make sure it sits above the navbar button */
     top: 15px;
-    left: 20px;
+    right: 20px;
 }
 
 
 
 @media (max-width: 990px) {
-    .navbar-toggle {
+    .sidebar-left {
         display: block;
     }
 
     .sidebar {
         display: none;
     }
-
-    .sidebar-left {
-        display: block;
-    }
-
-
-
 }
