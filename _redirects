@@ -1,0 +1,10 @@
+## Netlify redirects to support clean admin URLs
+# Serve the dashboard when visiting /admin
+/admin    /admin/pages/dashboard.html  200
+
+# Rewrite any /admin/<name> to /admin/pages/<name>.html
+# Example: /admin/users -> /admin/pages/users.html
+/admin/*  /admin/pages/:splat        200
+
+# Note: after adding this file, push to your repo or trigger a Netlify deploy
+# so the changes take effect on the deployed site.
